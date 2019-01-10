@@ -2,7 +2,7 @@ Package: rangemodelR
 Type: Package
 Depends: R (>= 3.2.0)
 Title: Mid-Domain Effect and Species Richness 
-Version: 1.0.3
+Version: 1.0.4
 Author: Aniruddha Marathe <aniruddha.pravin.marathe@gmail.com>
 Maintainer: Aniruddha Marathe <aniruddha.pravin.marathe@gmail.com>
 Description: Generates expected values of species richness, with continuous or 
