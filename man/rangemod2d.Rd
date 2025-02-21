@@ -4,24 +4,32 @@
 \alias{rangemod2d}
 \title{Range Cohesion Models for Spatial Polygon Grids}
 \usage{
-rangemod2d(spmat, shp, field, nb, rsize = c("observed", "unif"), var = NULL,
-  reps, degen = FALSE, first = FALSE)
+rangemod2d(
+  spmat,
+  shp,
+  field,
+  nb,
+  rsize = c("observed", "unif"),
+  var = NULL,
+  reps,
+  degen = FALSE,
+  first = FALSE
+)
 }
 \arguments{
 \item{spmat}{a site by species matrix or data frame with species in columns}
 
-\item{shp}{shapefile of sites where species occurences are recorded}
+\item{shp}{simple features file of sites where species occurrences are recorded}
 
-\item{field}{a number or character vector indicating which column in the dbf
-of shapefile is the unique id}
+\item{field}{a number or character vector indicating which column is the unique id}
 
 \item{nb}{a neighbour object similar to one generated from
 \code{\link[spdep]{poly2nb}} of \pkg{\link[spdep]{spdep}}
-If 'nb' is NA then result is range scatter}
+If 'nb' is NULL then result is range scatter}
 
-\item{rsize}{which rangesizes to use for simulation, can be an integer vector
-of same length as number of species(collumns)
-or either 'observed' or'unif'. See details for explanations}
+\item{rsize}{which range sizes to use for simulation, can be an integer vector
+of same length as number of species(columns)
+or either 'observed' or 'unif'. See details for explanations}
 
 \item{var}{an optional vector containing explanatory variable for
 constraining the randomization}
@@ -31,36 +39,36 @@ constraining the randomization}
 \item{degen}{If true, each randomized site by species matrix is saved and
 provided in output}
 
-\item{first}{If true, 'var' is used while choosing the first occurence as
+\item{first}{If true, 'var' is used while choosing the first occurrence as
 well.if 'var' is null, first is always set 'FALSE'}
 }
 \value{
 A list containing following elements:
-\itemize{
+\describe{
  \item{"out.df"}{ a data frame with four columns for mean, standard
                   deviation, lower and upper limits of confidence intervals
                   of predicted species richness }
- \item{"out.shp"}{ same as the input shapefile with additional the four
-                   colums of 'out.df' in attribute table}
- \item{"degenerate.matrices"} {a list of all the randomized matrices(only
-                               present if 'degen' is TRUE)}
+ \item{"out.shp"}{ same as the input shp with additional four
+                   columns of 'out.df'}
+ \item{"degenerate.matrices"}{a list of all the randomized matrices - only
+                               present if 'degen' is TRUE}
  }
 }
 \description{
-rangemod2d takes observed site by species matrix and returns
+The function takes observed site by species matrix and returns
               expected species richness values of each site based on user
               defined neighbour relationships.
 }
 \details{
-rangemod2d impliments simulations used by Rahbeck et.al. (2007) to
+Implements simulations used by Rahbeck et.al. (2007) to
          species distribution data on a continuous grid. In 'spmat' the sites
-         (rows) represent each cell in the grid.The species occurences across
+         (rows) represent each cell in the grid.The species occurrences across
          sites are randomly spread maintaining strict range cohesion.
          A neighbour object is used to limit the choice
-         of cells during random selctions to immidiate neighbours. Options
+         of cells during random selections to immediate neighbours. Options
          for creating four cell (rook) or eight cell (queen) neighbours can
          be accessed while creating the 'nb' object, (typically from package
-         \pkg{\link[spdep]{spdep}}). The randomisation proceeds by selecting a
+         \pkg{\link[spdep]{spdep}}). The randomization proceeds by selecting a
          single site,(weighted by 'var' if provided, and first is TRUE), and
          then continues selecting one site at a time from a vector of
          available neighbours taken from 'nb' and weighted by 'var' if
@@ -68,24 +76,21 @@ rangemod2d impliments simulations used by Rahbeck et.al. (2007) to
          is selected.
 }
 \examples{
-if(require(rgdal)&&require(maptools)&&require(rgeos)&&require(ggplot2)){
-data(shp)
-data(neigh_ob)
-data(spmat)
-mod.out <- rangemod2d(spmat,shp,"ID",nb = neigh_ob,rsize = "observed",
-                       var = NULL,reps = 5)
-shp.out <- mod.out$out.shp
-shp.out.df <- shp.out@data
-shp.out.fort <- fortify(shp.out,region = "ID")
-seq <- match(shp.out.fort$id,shp.out.df$ID)
-shp.out.gg <- data.frame(shp.out.fort,shp.out.df[seq,])
-ggplot(shp.out.gg)+
-  geom_map(map=shp.out.gg,aes_string(map_id="id",
-                                     fill = "mod.rich"))+
-  geom_path(aes(x = long,y = lat,group = group),colour = "white")+
-  coord_equal() + theme_bw()+
-  scale_fill_continuous(low = "white",high = "black")
-}
+
+if(requireNamespace('sf')&requireNamespace('spdep')){
+  data(grid_layer)
+  data(spmat)
+
+  grid_layer <- sf::st_as_sf(grid_layer,sf_column_name = 'geometry')
+  grid_nb <- spdep::poly2nb(grid_layer)
+  mod.out <- rangemod2d(spmat,grid_layer,"ID",nb = grid_nb,rsize = "observed", var = NULL,reps = 5)
+  }
+\dontrun{
+ tmap::tm_shape(mod.out$out.shp)+
+  tm_polygons(fill = mod.rich)
+ }
+
+
 }
 \references{
 Rahbek, C., Gotelli, N., Colwell, R., Entsminger, G., Rangel,

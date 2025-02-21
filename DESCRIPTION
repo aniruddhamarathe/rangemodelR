@@ -1,14 +1,20 @@
 Package: rangemodelR
 Type: Package
-Depends: R (>= 3.2.0)
-Title: Mid-Domain Effect and Species Richness 
-Version: 1.0.4
-Author: Aniruddha Marathe <aniruddha.pravin.marathe@gmail.com>
+Depends: 
+    R (>= 3.5)
+Title: Mid-Domain Effect and Species Richness
+Version: 1.0.6
+Authors@R: person(given = "Aniruddha",
+                    family = "Marathe",
+                    role = c("aut", "cre"),
+                    email = "aniruddha.pravin.marathe@gmail.com")
 Maintainer: Aniruddha Marathe <aniruddha.pravin.marathe@gmail.com>
-Description: Generates expected values of species richness, with continuous or 
-              scattered ranges, for data across one or two dimensions. 
+Description: Generates randomized community matrices under strict range cohesion. The input data can be either species occurrence recorded across spatial grids with geographic coordinates Or sites ordered along gradients such as elevation or latitude.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
-Suggests: ggplot2,maptools,rgdal,rgeos
+RoxygenNote: 7.3.2
+NeedsCompilation: no
+Imports: 
+    sf,
+    spdep

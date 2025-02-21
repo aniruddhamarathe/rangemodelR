@@ -9,23 +9,23 @@ random.range(uid, nb, range.size, var, first)
 \arguments{
 \item{uid}{a vector of unique ids for selection}
 
-\item{nb}{a neighbour object similar to generated from 'shp2nb'}
+\item{nb}{a neighbour object similar to generated from 'poly2nb'}
 
 \item{range.size}{a vector of number of sites occupied by each species}
 
 \item{var}{an optional vector of variables for constraining the randomization}
 
-\item{first}{If true, var is used while choosing the first occurence as well.
+\item{first}{If true, var is used while choosing the first occurrence as well.
 if var is null, first is always set FALSE}
 }
 \value{
-a numeric vector specifying selected possitions in 'uid'
+a numeric vector specifying selected values in 'uid'
 }
 \description{
-random.range is used within other rangemodel functions to
-             radomly place given number of species occurences
+It is used within other functions in this package to
+             randomly place given number of species occurrences
 }
 \details{
-this function is not intended for any direct use but is called
-          within other functions of 'rangemodelR'.
+This function is not intended for any direct use but is called
+          within other functions of this package.
 }

@@ -1,18 +1,18 @@
-#' Range shuffle models for for range extents reccorded along gradients
+#' Range shuffle models for for range extents recorded along gradients
 #' @description This function was used by Wang et. al.(2012) to test geometric
 #'              constraints, on elevational gradients. The function randomizes
 #'              the range extents and range location for each species and
 #'              returns expected pattern in species richness under geometric
 #'              constraints.
-#' @param x     Input data for elevational extents of species.data.dataframe
+#' @param x     Input data for elevational extents of species. A dataframe
 #'              with names 'genus_species','min','max','range','mid',
 #'              'num_zones'. See Wang et.al (2012) for details. Species names
 #'              column is optional.
-#' @param boundary nature of boundaries at the extremes of the gradien ie.
+#' @param boundary nature of boundaries at the extremes of the gradient ie.
 #'                 either 'hard boundaries' that species cannot cross, or
 #'                 'soft boundaries' that species can move across. Can be
-#'                one of the following choises "hh", "sh", "hs", or "ss"
-#' @param var Predictor variable for constraining randomizations.
+#'                one of the following choices "hh", "sh", "hs", or "ss"
+#' @param var Predictor variable for constraining the randomization.
 #'            dataframe with columns 'mid' and 'weights'. Where 'wights' provide
 #'            relative chance of selecting a range location, typically based on
 #'            environmental predictors
@@ -24,9 +24,9 @@
 #'               gradient then the minimum point within the subset
 #' @param highest Numeric. If analysis is only for a subset of the sampled
 #'               gradient then the maximum point within the subset
-#' @details range_shuffle impliments simulations described by Wang et.al (2012)
+#' @details Implements simulations described by Wang et.al (2012)
 #'          to estimate effect of geometric  and environmental constraints on
-#'          pattern in species richness across spatial graidients. It calculates
+#'          pattern in species richness across spatial gradients. It calculates
 #'          a vector of all possible range locations for each given range extent
 #'          based on the conditions for geometric constraints given by
 #'          'boundary'. Range locations are randomized by sampling from this
@@ -34,7 +34,7 @@
 #' @return If degen is FALSE, a data frame with four colums for mean, SD and
 #'        confidence intervals of expected richness
 #'
-#' \itemize{
+#' \describe{
 #'  \item{"mod.rich"}{ mean richness of each site}
 #'  \item{"mod.sd"}{ standard deviation of species richness}
 #'  \item{"q2.5"}{ lower limit of the confidence interval}

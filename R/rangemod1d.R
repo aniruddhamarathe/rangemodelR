@@ -1,35 +1,35 @@
 #' Range Cohesion Model for Ordered (and Non-spatial) Data
-#' @description rangemod1d takes observed site by species matrix and returns
+#' @description The function takes observed site by species matrix and returns
 #'               expected species richness values of each site
 #' @param spmat a site by species matrix or data frame with species in columns
 #' @param reps number of replicates
 #' @param var an optional vector containing explanatory variable for
 #'        constraining the randomization. It should be NULL when absent
-#' @param first If TRUE, 'var' is used while choosing the first occurence as
+#' @param first If TRUE, 'var' is used while choosing the first occurrence as
 #'        well.if 'var' is null, first is always set 'FALSE'
 #' @param cohesion If true, species distributions are without gaps
 #'                 i.e. result is range cohesion, otherwise it is range scatter
 #' @param degen If true, each randomized site by species matrix is saved and
 #'        provided in output
-#' @param rsize which rangesizes to use for simulation, can be an integer
-#'        vector of same length as number of species(collumns) or either
-#'        'observed' or'unif'. See details for explanations
-#' @details rangemod1d impliments simulations used by Rahbeck et.al (2007) to
+#' @param rsize which range sizes to use for simulation, can be an integer
+#'        vector of same length as number of species(columns) or either
+#'        'observed' or 'unif'. See details for explanations
+#' @details Implements simulations used by Rahbeck et.al (2007) to
 #'          data which are only in form of a site by species matrix and without
 #'          any spatial information. A list similar to an nb object of spdep can
 #'          prepared according to order in which the rows (sites) are arranged.
-#'          A manually prepared list of neighbours for each site can also be
-#'          used.It is important that each site must have at least one neighbour.
-#'          'rsize' provides a vector of rangesizes.It can be 'unif' -
+#'          A manually prepared list of neighbors for each site can also be
+#'          used.It is important that each site must have at least one neighbor.
+#'          'rsize' provides a vector of range sizes.It can be 'unif' -
 #'           ranges are drawn from a uniform distribution,between 1 to
-#'          number of sites or 'observed' - rangesize
+#'          number of sites or 'observed' - range size
 #'          of each species is exactly the same as in the observed matrix.
 #'          Alternatively a it can also be a user specified integer vector, of
 #'          same length as number of species.
-#' @return If degen is FALSE, a data frame with four colums for mean, SD and
+#' @return If degen is FALSE, a data frame with four columns for mean, SD and
 #'        confidence intervals of expected richness
 #'
-#' \itemize{
+#' \describe{
 #'  \item{"mod.rich"}{ mean richness of each site}
 #'  \item{"mod.sd"}{ standard deviation of species richness}
 #'  \item{"q2.5"}{ lower limit of the confidence interval}

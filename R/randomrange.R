@@ -1,16 +1,16 @@
 #' random.range - supporting function for other rangemodel fucntions
 #'
-#' @description random.range is used within other rangemodel functions to
-#'              radomly place given number of species occurences
+#' @description It is used within other functions in this package to
+#'              randomly place given number of species occurrences
 #' @param uid a vector of unique ids for selection
-#' @param nb a neighbour object similar to generated from 'shp2nb'
+#' @param nb a neighbour object similar to generated from 'poly2nb'
 #' @param range.size a vector of number of sites occupied by each species
 #' @param var an optional vector of variables for constraining the randomization
-#' @param first If true, var is used while choosing the first occurence as well.
+#' @param first If true, var is used while choosing the first occurrence as well.
 #'        if var is null, first is always set FALSE
-#' @details this function is not intended for any direct use but is called
-#'           within other functions of 'rangemodelR'.
-#' @return a numeric vector specifying selected possitions in 'uid'
+#' @details This function is not intended for any direct use but is called
+#'           within other functions of this package.
+#' @return a numeric vector specifying selected values in 'uid'
 #' @export
 
 random.range <- function(uid,nb,range.size,var,first){
@@ -18,7 +18,7 @@ random.range <- function(uid,nb,range.size,var,first){
     sel.vec <- sample(uid,range.size,prob = var)
   }else{
     sel.vec <- NULL
-    sel.nb <- NULL # objects to store seleted cells and neighbours
+    sel.nb <- NULL # objects to store selected cells and neighbours
 
     if(first == T){
       sel.vec <- c(sel.vec,sample(uid,1,prob = var)) # select first cell

@@ -1,7 +1,6 @@
-#' Site by Species Matrix of Hypothetical Assemblage of 20 Species Across the
-#' Grid 'shp'
+#' Site by Species Matrix of Hypothetical Assemblage of 20 Species distributed across the grid used in example for 2d range spread
 #'
-#' A site by species matrix with cells of the grid in shapefile \link{shp}
+#' A site by species matrix with cells of the grid in \link{grid_layer}
 #' in rows and 20 species in columns. Presence of species is denoted
 #'  by '1' and absence by '0'.
 #'

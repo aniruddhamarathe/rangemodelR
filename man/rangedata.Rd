@@ -2,8 +2,10 @@
 % Please edit documentation in R/rangedata.R
 \name{rangedata}
 \alias{rangedata}
-\title{Randomely generated elevational extents data for twenty species}
-\format{a dataframe with 20 rows and five columns}
+\title{Elevational extents data for twenty species}
+\format{
+a dataframe with 20 rows and five columns
+}
 \description{
 An example data that can be used with the function
 \code{\link{range_shuffle}}. The data contains
@@ -11,8 +13,8 @@ randomly generated elevational extents between 600m and 2400m. The function
 will expect same column names as in the example data.
 }
 \details{
-It is a data.frame contains five collumns with following names:
-\itemize{
+It is a data.frame that contains five columns with following names:
+\describe{
  \item{"min"}{ minimum elevation of range extent}
  \item{"max"}{ maximum elevation of range extent}
  \item{"range"}{ max - min}
